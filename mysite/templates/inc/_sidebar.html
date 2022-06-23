@@ -1,0 +1,30 @@
+{% load news_tags %}
+
+{% comment %}
+-------------------------------------------------------------
+<!--simple_tag-->
+--------------
+Не используем, поскольку у "simple_tag" код больше
+<div class="col-3">
+    <div class="list-group">
+        {% get_list_categories as categories %}
+        {% for item in categories %}
+            <a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action">{{ item.title }}</a>
+        {% endfor %}
+    </div>
+</div>
+<br>
+ -------------------------------------------------------------
+{% endcomment %}
+
+{% comment %}
+-------------------------------------------------------------
+<!--inclusion_tag-->
+--------------
+{% show_categories arg1='Welcome' arg2='User' %}      #   убрал "%"
+
+{% endcomment %}
+
+
+{% show_categories %}
+

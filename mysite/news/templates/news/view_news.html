@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+
+    {% block title %}
+        {{ news_item.title }} :: {{ block.super }}
+    {% endblock %}
+
+    {% block sidebar %}
+        {% include 'inc/_sidebar.html' %}
+    {% endblock %}
+
+
+    {% block content %}
+
+        <div class="col-9">
+
+            <div class="d-grid gap-2 d-md-block">
+                <button class="btn btn-primary" type="button">Добавить новость</button>
+            </div>
+
+            <br>
+
+            <br>
+
+                <div class="card">
+                    <strong class="d-inline-block mb-2 text-dark">
+                        <div class="card-header">
+                            Категория: {{ news_item.category }}
+                        </div>
+                    </strong>
+                    <div class="card-body">
+                        <h3 class="mb-0">{{ news_item.title }}</h3>
+                        <br>
+                        {% if elem.photo %}
+                            <img src="{{ news_item.photo.url }}" class="img-fluid" alt="photo">
+                        {% else %}
+                            <img src="https://picsum.photos/200/300" alt="" width="350">
+                            <p>Фото к новости отсутствует</p>
+                        {% endif %}
+                        <p class="card-text">{{ news_item.content | linebreaks }}</p>
+                    </div>
+                    <div class="card-footer text-muted">{{ news_item.created_at|date:"Y-m-d H:i" }}</div>
+                    <div class="card-footer text-danger">{{ news_item | filesizeformat }}</div>
+                    <div class="card-footer text-danger">Прошло с момента создания статьи: {{ news_item.created_at | timesince }}</div>
+                </div>
+                <br>
+        </div>
+
+    {% endblock %}
+

@@ -1,0 +1,13 @@
+<div class="col-3">
+    <div class="list-group">
+        {% for elem in categories %}
+            <a href="{{ elem.get_absolute_url }}" class="list-group-item list-group-item-action">{{ elem.title }}</a>
+{% comment %}
+<!--<a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action">{{ item.title }}</a>-->
+        <!--            <a href="{% url 'category' item.pk %}" class="list-group-item list-group-item-action">-->
+<!--                {{ item.title }}: {{ arg1 }}  -   {{ arg2 }}</a>    &lt;!&ndash; добавляет к категории "авто: hello - world"  &ndash;&gt; -->
+{% endcomment %}
+
+        {% endfor %}
+    </div>
+</div>
