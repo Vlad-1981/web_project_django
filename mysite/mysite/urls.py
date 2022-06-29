@@ -20,8 +20,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', include('news.urls')),
-    path('news/', include('news.urls')),                        #   http://127.0.0.1:8000/
+    path('', include('news.urls')),
+    # path('news/', include('news.urls')),                        #   http://127.0.0.1:8000/
     # path('test/', include('news.urls')),                   #   http://127.0.0.1:8000/news/
                                                            #   чтобы связать маршрутизатор ("urls") с представлением ("view")
 ]                                                          #   необходимо прописать путь к файлу "view" проекта "news"

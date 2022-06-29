@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import News, Category
-from forms import NewsForm
+from .forms import *
 
 
 def index(request):                                         #   http://127.0.0.1:8000/news
@@ -35,7 +35,26 @@ def view_news(request, news_id):
 
 def add_news(request):                          #       добавляет новость       #   http://127.0.0.1:8000/add_news
     if request.method == 'POST':
-        pass
+        form = NewsForm(request.POST)
+        if form.is_valid():
+            # news = News.objects.create(**form.cleaned_data)
+            news = form.save()
+            return redirect(news)           #   перенаправляет на вновь созданную новость
     else:
         form = NewsForm()
     return render(request, 'news/add_news.html', {'title': 'Добавить статью', 'form': form},)
+
+
+# def login(request):
+#     if request.method == 'POST':
+#         pass
+#         # login_form = LoginForm(data=request.POST)
+#         # if login_form.is_valid():
+#         #     pass
+#         #     # do something when valid
+#     else:
+#         login_form = LoginForm()
+#     return render(request, 'login.html', {'login_form': login_form})
+
+def login(request):
+    return render(request, 'news/login.html', {'title': 'Login'})

@@ -10,7 +10,7 @@ class News(models.Model):
     update_at = models.DateTimeField(auto_now=True, verbose_name='Обновлено')         #   дата и время обновляются при корректировке новости
     photo = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name='Фото', blank=True) #   разбивает загружаемые изображения по папкам и датам (каждый день)
     sign_of_publication = models.BooleanField(default=True, verbose_name='Признак публикации')
-    category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, blank=True, verbose_name='Категория')  #   Новость защищена от удаления
+    category = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория')  #   Новость защищена от удаления
                                                     #   если таблица "Категория" создана ПОСЛЕ таб."News", указывать на до в ковычках
                                                     #   в противном случае, просто ссылаемся на таблицу
                                                     #   category = models.ForeignKey('Category')        #       если таблица "Категория" создана ПОСЛЕ таб."News", указывать надо в ковычках
@@ -48,3 +48,5 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
         ordering = ['title']
 
+# class User(AbstractUser):
+#     pass
