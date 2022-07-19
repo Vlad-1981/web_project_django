@@ -58,7 +58,7 @@
                         <a href="{{ elem.get_absolute_url }}" class="btn btn-primary">Читать далее</a>
                     </div>
                     <div class="card-footer text-muted">{{ elem.created_at|date:"Y-m-d H:i" }}</div>
-                    <div class="card-footer text-danger">{{ elem | filesizeformat }}</div>
+<!--                    <div class="card-footer text-danger">{{ elem | filesizeformat }}</div>-->
                     <div class="card-footer text-danger">Прошло с момента создания статьи: {{ elem.created_at | timesince }}</div>
                 </div>
                 <br>

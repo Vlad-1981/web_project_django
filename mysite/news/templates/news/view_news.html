@@ -32,7 +32,7 @@
                     <div class="card-body">
                         <h3 class="mb-0">{{ news_item.title }}</h3>
                         <br>
-                        {% if item.photo %}
+                        {% if news_item.photo %}
                             <img src="{{ news_item.photo.url }}" class="img-fluid" alt="photo">
                         {% else %}
                             <img src="https://picsum.photos/200/300" alt="" width="350">
@@ -41,7 +41,7 @@
                         <p class="card-text">{{ news_item.content | linebreaks }}</p>
                     </div>
                     <div class="card-footer text-muted">{{ news_item.created_at|date:"Y-m-d H:i" }}</div>
-                    <div class="card-footer text-danger">{{ news_item | filesizeformat }}</div>
+<!--                    <div class="card-footer text-danger">{{ news_item | filesizeformat }}</div>-->
                     <div class="card-footer text-danger">Прошло с момента создания статьи: {{ news_item.created_at | timesince }}</div>
                 </div>
                 <br>

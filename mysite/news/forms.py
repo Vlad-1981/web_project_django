@@ -1,6 +1,7 @@
 from django import forms
 from .models import News
-
+import re
+from django.core.exceptions import ValidationError
 
 class NewsForm(forms.ModelForm):
     class Meta:
@@ -13,7 +14,12 @@ class NewsForm(forms.ModelForm):
                     'category': forms.Select(attrs={'class': 'form-control'}),
         }
 
-
+    def clean_title(self):                      #   метод позволяет добавлять название новости, которое начинается ТОЛЬКО с буквы!
+        title = self.cleaned_data['title']
+        if re.match(r'\d', title):
+            raise ValidationError('Название должно начинаться с буквы!')
+        else:
+            return title
 
 
 
