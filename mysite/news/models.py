@@ -17,7 +17,7 @@ class News(models.Model):
                                                     #   в противном случае, просто ссылаемся на таблицу: category = models.ForeignKey(Category)
 
     def get_absolute_url(self):
-        return reverse('view_news', kwargs={'news_id': self.pk})
+        return reverse('view_news', kwargs={'pk': self.pk})
 
     def my_func(self):
         return 'Hello from model'
@@ -25,8 +25,8 @@ class News(models.Model):
     def __str__(self):
         return self.title
 
-    def get_size_used(self):
-        return filters.filesizeformat(self.bytes)
+    # def get_size_used(self):
+    #     return filters.filesizeformat(self.bytes)
 
     class Meta:
         verbose_name = 'Новость'            #   при редактировании новости вверху отображается "изменить НОВОСТЬ"

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+
+    {% block title %}
+        {{ title }} :: {{ block.super }}
+    {% endblock %}
+
+    {% block sidebar %}
+        {% include 'inc/_sidebar.html' %}
+    {% endblock %}
+
+
+    {% block content %}
+
+        <div class="col-9">
+            <div class="row">
+
+                <div class="col-9">
+                    <div class="bd-example">
+                        <div class="col-6">
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <h4>Количество статей в разделе: <span class="badge bg-primary rounded-pill">{{ list_news.count }}</span></h4>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="d-grid gap-2 d-md-block">
+                        <a href="{% url 'add_news' %}" class="btn btn-primary">Добавить новость</a>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            {% if object_list %}
+            {% for elem in object_list %}                                         <!--    #   "elem" - экземпляр класса "News" модели-->
+
+            <div class="card">
+                    <strong class="d-inline-block mb-2 text-dark">
+                        <div class="card-header">
+                            Категория: <a href="{{ elem.category.get_absolute_url }}">{{ elem.category }}</a>
+                        </div>
+                    </strong>
+                    <div class="card-body">
+                        <h3 class="mb-0">{{ elem.title }}</h3>
+                        <br>
+                        {% if elem.photo %}
+                            <img src="{{ elem.photo.url }}" class="img-fluid" alt="photo">
+                        {% else %}
+                            <img src="https://picsum.photos/200/300" alt="" width="350">
+                            <p>Фото к новости отсутствует</p>
+                        {% endif %}
+                        <p class="card-text">{{ elem.content | linebreaks | truncatewords:50 }}</p>
+                        <a href="{{ elem.get_absolute_url }}" class="btn btn-primary">Читать далее</a>
+                    </div>
+                    <div class="card-footer text-muted">{{ elem.created_at|date:"Y-m-d H:i" }}</div>
+<!--                    <div class="card-footer text-danger">{{ elem | filesizeformat }}</div>-->
+                    <div class="card-footer text-danger">Прошло с момента создания статьи: {{ elem.created_at | timesince }}</div>
+                </div>
+                <br>
+            {% endfor %}
+            {% else %}
+                <h2>В разделе нет новостей</h2>
+            {% endif %}
+
+            <br>
+
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group me-2" role="group" aria-label="First group">
+                    <button type="button" class="btn btn-primary">1</button>
+                    <button type="button" class="btn btn-primary">2</button>
+                    <button type="button" class="btn btn-primary">3</button>
+                    <button type="button" class="btn btn-primary">4</button>
+                </div>
+                <div class="btn-group me-2" role="group" aria-label="Second group">
+                    <button type="button" class="btn btn-secondary">5</button>
+                    <button type="button" class="btn btn-secondary">6</button>
+                    <button type="button" class="btn btn-secondary">7</button>
+                </div>
+                <div class="btn-group" role="group" aria-label="Third group">
+                    <button type="button" class="btn btn-info">8</button>
+                </div>
+            </div>
+            <br>
+        </div>
+
+    {% endblock %}
+
