@@ -17,6 +17,7 @@ urlpatterns = [
                 path('news/add_news/', CreateNews.as_view(), name='add_news'),
                 # path('news/add_news/', add_news, name='add_news'),
 
+                path('test/', test, name='test'),
 
                 path('news/login/', login, name='login'),
 

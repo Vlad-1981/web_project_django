@@ -1,15 +1,18 @@
-<nav class="py-2 bg-light border-bottom">
-    <div class="container d-flex flex-wrap">
-        <ul class="nav me-auto">
-            <li class="nav-item"><a href="/" class="nav-link link-dark px-2 active" aria-current="page">Новости</a></li>
-            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Контакты</a></li>
-<!--            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Форум</a></li>-->
-            <li class="nav-item"><a href="{% url 'add_news' %}" class="nav-link link-dark px-2">Добавить новость</a></li>
-            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">О нас</a></li>
-        </ul>
-        <ul class="nav">
-            <li class="nav-item"><a href="{% url 'login' %}" class="nav-link link-dark px-2">Login</a></li>
-            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Sign up</a></li>
-        </ul>
-    </div>
-</nav>
+<!--<nav class="py-2 bg-light border-bottom">-->
+<!--    <div class="container d-flex flex-wrap">-->
+<!--        <ul class="nav me-auto">-->
+<!--            <li class="nav-item"><a href="/" class="nav-link link-dark px-2 active" aria-current="page">Новости</a></li>-->
+<!--            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Контакты</a></li>-->
+<!--&lt;!&ndash;            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Форум</a></li>&ndash;&gt;-->
+
+<!--            {% if request.user.is_authenticated %}                                                                              &lt;!&ndash; скрывает  "добавить новость" для неавторизованных пользователей &ndash;&gt;-->
+<!--                <li class="nav-item"><a href="{% url 'add_news' %}" class="nav-link link-dark px-2">Добавить новость</a></li>-->
+<!--            {% endif %}-->
+<!--            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">О нас</a></li>-->
+<!--        </ul>-->
+<!--        <ul class="nav">-->
+<!--            <li class="nav-item"><a href="{% url 'login' %}" class="nav-link link-dark px-2">Login</a></li>-->
+<!--            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Sign up</a></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</nav>-->

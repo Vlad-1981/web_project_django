@@ -1,0 +1,10 @@
+#header,
+.module h2, .module caption, .inline-group h2 {
+                    background: #9575cd;
+                    font-style: bold;;
+                    font-family: sans-serif
+}
+
+div.breadcrumbs {
+                    background: #424242;
+}
