@@ -45,8 +45,16 @@
 
 
         <div class="col-md-3 text-end">
-            <button type="button" class="btn btn-outline-primary me-2">Login</button>
-            <button type="button" class="btn btn-primary">Sign-up</button>
+<!--            <span class="navbar-text">-->
+<!--                <a href="{% url 'register' %}">Register</a> | <a href="{% url 'login' %}">Login</a>-->
+<!--            </span>-->
+<!--            <ul class="nav">&ndash;&gt;-->
+<!--                <button type="button" class="btn btn-outline-primary me-2"><a href="{% url 'login' %}" class="nav-link link-dark px-2">Login</a></button>-->
+<!--                <button type="button" class="btn btn-primary"><a href="#" class="nav-link link-dark px-2">Sign up</a></button>-->
+<!--            </ul>-->
+            <a class="btn btn-outline-primary" href="{% url 'login' %}" role="button">Login</a>
+            <a class="btn btn-primary" href="{% url 'register' %}" role="button">Sign-up</a>
+
         </div>
     </header>
 

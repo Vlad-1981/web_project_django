@@ -1,11 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import News, Category
-from .forms import *
+from .forms import NewsForm, UserRegisterForm
 from django.views.generic import ListView, DetailView, CreateView
 from django.urls import reverse_lazy
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 
 
 class HomeNews(ListView):                                       #   домашняя страница
@@ -59,6 +62,26 @@ class CreateNews(LoginRequiredMixin, CreateView):       #   "LoginRequiredMixin"
 
     login_url = '/admin/'       #   при попытке добавить новость на сайте, переход к авторизации в админке
     # raise_exception = True          #   при попытке добавить новость на сайте, выбрасывает ошибку "403 Forbidden"
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Вы зарегистрировались')
+            return redirect('login')
+        else:
+            messages.error(request, 'Ошибка регистрации')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'news/register.html', {'title': 'Registration', 'form': form})
+
+
+def login(request):
+    return render(request, 'news/login.html', {'title': 'Login'})
+
+
 
 
 # ------------------------------------------------------------------------------------------------------------------------------
@@ -138,6 +161,3 @@ def test(request):
     return render(request, 'news/test.html', {'page_obj': page_objects})
 
 
-
-def login(request):
-    return render(request, 'news/login.html', {'title': 'Login'})
