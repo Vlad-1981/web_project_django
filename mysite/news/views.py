@@ -1,7 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import News, Category
-from .forms import NewsForm, UserRegisterForm
+
+# -----   АВТОРИЗАЦИЯ ----------
+from .forms import NewsForm, UserLoginForm, UserRegisterForm        #   RegisterUserForm,
+from django.contrib.auth import login, logout
+# ----------------------------------------------------------------
+
+from .utils import *
 from django.views.generic import ListView, DetailView, CreateView
 from django.urls import reverse_lazy
 
@@ -64,11 +70,13 @@ class CreateNews(LoginRequiredMixin, CreateView):       #   "LoginRequiredMixin"
     # raise_exception = True          #   при попытке добавить новость на сайте, выбрасывает ошибку "403 Forbidden"
 
 
-def register(request):
+
+def register(request):                                          #   регистрация пользователя
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            login(request, user)
             messages.success(request, 'Вы зарегистрировались')
             return redirect('login')
         else:
@@ -76,12 +84,23 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'news/register.html', {'title': 'Registration', 'form': form})
+# ----------------------------------------------------------------------------------------------------------
+
+def user_login(request):                                        #   авторизация пользователя
+    if request.method == 'POST':
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('home')
+    else:
+        form = UserLoginForm()
+    return render(request, 'news/login.html', {'title': 'Login', 'form': form})
 
 
-def login(request):
-    return render(request, 'news/login.html', {'title': 'Login'})
-
-
+def user_logout(request):                                        #   выход из системы
+    logout(request)
+    return redirect('login')
 
 
 # ------------------------------------------------------------------------------------------------------------------------------
